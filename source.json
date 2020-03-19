@@ -1,0 +1,14 @@
+{
+        "name": "spanner_jdbc_distributed_1",
+        "config": {
+                "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+                "tasks.max": "1",
+		"connection.url": "jdbc:cloudspanner:/projects/[PROJECT_ID]/instances/test-spanner-instance/databases/test-db;credentials=/secrets/credentials.json",
+                "topic.prefix": "spanner-",
+		"table.whitelist": "Test",
+		"poll.interval.ms": "5000",
+                "mode": "timestamp",
+                "timestamp.column.name": "LastUpdateTime",
+                "validate.non.null": "false"
+        }
+}
