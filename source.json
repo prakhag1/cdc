@@ -1,10 +1,10 @@
 {
-        "name": "spanner_jdbc_distributed_1",
+        "name": "spanner-connector",
         "config": {
                 "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
                 "tasks.max": "1",
 		"connection.url": "jdbc:cloudspanner:/projects/[PROJECT_ID]/instances/test-spanner-instance/databases/test-db;credentials=/secrets/credentials.json",
-                "topic.prefix": "spanner-",
+                "topic.prefix": "spanner_",
 		"table.whitelist": "Test",
 		"poll.interval.ms": "5000",
                 "mode": "timestamp",
