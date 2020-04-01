@@ -24,7 +24,7 @@ FROM debezium/connect:0.10
 
 # Fetch and deploy Google Cloud Spanner JDBC driver
 COPY --from=MAVEN_TOOL_CHAIN \
-     /java-spanner-jdbc/target/google-cloud-spanner-jdbc-1.14.1-SNAPSHOT.jar /kafka/libs
+     /java-spanner-jdbc/target/google-cloud-spanner-jdbc-*-SNAPSHOT.jar /kafka/libs
 
 RUN cd /kafka/libs && \
     curl -sO https://repo1.maven.org/maven2/io/grpc/grpc-netty-shaded/1.27.2/grpc-netty-shaded-1.27.2.jar
@@ -43,6 +43,6 @@ RUN mkdir $KAFKA_BQ_DIR
 RUN cd $KAFKA_BQ_DIR && \
     curl -sO http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz && \
     tar -xvf confluent-hub* && \
-   ./bin/confluent-hub install --no-prompt wepay/kafka-connect-bigquery:latest && \
+    ./bin/confluent-hub install --no-prompt wepay/kafka-connect-bigquery:latest && \
     cp share/confluent-hub-components/*/lib/* .
      
