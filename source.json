@@ -6,7 +6,7 @@
 		"connection.url": "jdbc:cloudspanner:/projects/[PROJECT_ID]/instances/test-spanner-instance/databases/test-db;credentials=/secrets/credentials.json",
                 "topic.prefix": "spanner_",
 		"table.whitelist": "Test",
-		"poll.interval.ms": "5000",
+		"poll.interval.ms": "1000",
                 "mode": "timestamp",
                 "timestamp.column.name": "LastUpdateTime",
                 "validate.non.null": "false"
