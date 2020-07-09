@@ -52,7 +52,7 @@ spec:
           value: my_connect_statuses
         - name: VALUE_CONVERTER
           value: io.confluent.connect.avro.AvroConverter
-        image: gcr.io/[PROJECT_ID]/connect
+        image: gcr.io/cloud-solutions-images/connect
         name: connect
         imagePullPolicy: Always
         ports:

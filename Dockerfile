@@ -21,6 +21,7 @@ RUN git clone https://github.com/googleapis/java-spanner-jdbc && \
     mvn -B package -Pbuild-jdbc-driver -DskipTests
 
 FROM debezium/connect:0.10
+USER root
 
 # Fetch and deploy Google Cloud Spanner JDBC driver
 COPY --from=MAVEN_TOOL_CHAIN \
@@ -39,10 +40,9 @@ RUN cd $KAFKA_CONNECT_JDBC_DIR && \
 # Fetch BQ connector
 ENV KAFKA_BQ_DIR=$KAFKA_CONNECT_PLUGINS_DIR/kafka-bq
 RUN mkdir $KAFKA_BQ_DIR
+RUN yum install -y unzip
 
 RUN cd $KAFKA_BQ_DIR && \
-    touch connect-distributed.properties && \
-    curl -sO http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz && \
-    tar -xvf confluent-hub* && \
-    ./bin/confluent-hub install --no-prompt wepay/kafka-connect-bigquery:latest --component-dir . --worker-configs connect-distributed.properties && \
-    cp wepay-kafka-connect-bigquery/lib/* .
+    curl -sO https://d1i4a15mxbxib1.cloudfront.net/api/plugins/wepay/kafka-connect-bigquery/versions/1.6.1/wepay-kafka-connect-bigquery-1.6.1.zip &&\
+    unzip wepay*.zip && \
+    rm wepay*.zip
